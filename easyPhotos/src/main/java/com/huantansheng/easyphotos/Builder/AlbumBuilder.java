@@ -238,6 +238,18 @@ public class AlbumBuilder {
         return AlbumBuilder.this;
     }
 
+    public AlbumBuilder complexSelector(boolean singleType, int videoCount, int pictureCount, boolean canSelectVideo,String canSelectVideoStr) {
+        Setting.complexSelector = true;
+        Setting.complexSingleType = singleType;
+        Setting.complexVideoCount = videoCount;
+        Setting.complexPictureCount = pictureCount;
+        Setting.count = videoCount + pictureCount;
+        Setting.showVideo = true;
+        Setting.canSelectVideo=canSelectVideo;
+        Setting.canSelectVideoStr=canSelectVideoStr;
+        return AlbumBuilder.this;
+    }
+
     /**
      * 设置相机按钮位置
      *

@@ -54,6 +54,9 @@ public class Setting {
     public static boolean complexSingleType = false;
     public static int complexVideoCount = 0;
     public static int complexPictureCount = 0;
+    public static boolean canSelectVideo=true;
+
+    public static String canSelectVideoStr="聊满1颗爱心才可发送视频哦";
     //当传入已选中图片时，是否按照之前选中的顺序排序
     public static boolean isSequentialSelectedPhotos = true;
 
@@ -90,6 +93,8 @@ public class Setting {
         videoMaxSecond = Long.MAX_VALUE;
         complexSelector = false;
         complexSingleType = false;
+        canSelectVideo=true;
+        canSelectVideoStr="聊满1颗爱心才可发送视频哦";
         complexVideoCount = 0;
         complexPictureCount = 0;
         isSequentialSelectedPhotos = true;

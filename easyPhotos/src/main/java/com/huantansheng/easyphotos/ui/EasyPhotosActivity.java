@@ -1050,6 +1050,10 @@ public class EasyPhotosActivity extends AppCompatActivity implements AlbumItemsA
                 Toast.makeText(getApplicationContext(), getString(R.string.selector_single_type_hint_easy_photos),
                         Toast.LENGTH_SHORT).show();
                 break;
+            case Result.CAN_SELECT_VIDEO:
+                Toast.makeText(getApplicationContext(), Setting.canSelectVideoStr,
+                        Toast.LENGTH_SHORT).show();
+                break;
 
         }
     }

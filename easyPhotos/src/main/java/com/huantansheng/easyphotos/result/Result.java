@@ -22,16 +22,25 @@ public class Result {
     public static final int VIDEO_OUT = -2;
     public static final int SINGLE_TYPE = -3;
 
+    public static final int CAN_SELECT_VIDEO=-4;
+
     /**
-     * @return 0：添加成功 -2：超过视频选择数 -1：超过图片选择数
+     * @return 0：添加成功 -2：超过视频选择数 -1：超过图片选择数 -4:
      */
     public static int addPhoto(Photo photo) {
         if (photos.isEmpty()) {
-            photo.selected = true;
-            photos.add(photo);
-            return ADD_SUCCESS;
+            if(photo.type.contains(Type.VIDEO)&&!Setting.canSelectVideo){
+                return CAN_SELECT_VIDEO;
+            }else {
+                photo.selected = true;
+                photos.add(photo);
+                return ADD_SUCCESS;
+            }
         }
         if (Setting.complexSelector) {
+            if(!Setting.canSelectVideo){
+                return CAN_SELECT_VIDEO;
+            }
             if (Setting.complexSingleType) {
                 if (photos.get(0).type.contains(Type.VIDEO)) {
                     if (!photo.type.contains(Type.VIDEO)) {
