@@ -38,7 +38,7 @@ public class Result {
             }
         }
         if (Setting.complexSelector) {
-            if(!Setting.canSelectVideo){
+            if(photo.type.contains(Type.VIDEO)&&!Setting.canSelectVideo){
                 return CAN_SELECT_VIDEO;
             }
             if (Setting.complexSingleType) {
