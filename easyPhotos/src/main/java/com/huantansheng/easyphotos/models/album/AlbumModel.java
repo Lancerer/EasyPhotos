@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -245,8 +246,18 @@ public class AlbumModel {
                         MediaStore.Images.Media.getContentUri("external"), id);
 
 //某些机型，特定情况下三方应用或用户操作删除媒体文件时，没有通知媒体库，导致媒体库表中还有其数据，但真实文件已经不存在
-                File file = new File(path);
-                if (!file.isFile()) {
+                // 高效过滤无效文件（替代 file.exists()）
+                if (size <= 0) {
+                    continue;
+                }
+
+// 可选：额外后缀白名单过滤（更快、更准）
+                String lowerPath = path.toLowerCase();
+                if (!(lowerPath.endsWith(".jpg") || lowerPath.endsWith(".jpeg") ||
+                        lowerPath.endsWith(".png") || lowerPath.endsWith(".gif") ||
+                        lowerPath.endsWith(".webp") || lowerPath.endsWith(".heic") ||
+                        lowerPath.endsWith(".mp4") || lowerPath.endsWith(".mov") ||
+                        lowerPath.endsWith(".avi") || lowerPath.endsWith(".webm"))) {
                     continue;
                 }
 
